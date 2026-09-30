@@ -34,25 +34,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             alignItems: 'center',
           }}
         >
-          <Link
-            href="/"
-            style={{
-              color: 'var(--color-white)',
-              fontFamily: 'var(--font-heading)',
-              fontSize: '1.25rem',
-              textDecoration: 'none',
-            }}
-          >
-            SkyBridge Royal Passage
-          </Link>
-          <nav>
-            <Link
-              href="/services"
-              style={{ color: 'var(--color-gold)', textDecoration: 'none', fontWeight: 600 }}
-            >
-              Services
-            </Link>
-          </nav>
+<Link href="/" className="nav-brand">
+  SkyBridge Royal Passage
+</Link>
+<nav>
+  <Link href="/services" className="nav-link">
+    Services
+  </Link>
+</nav>
         </header>
         {children}
       </body>

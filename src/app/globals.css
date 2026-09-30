@@ -27,4 +27,27 @@ h1, h2, h3 {
   font-family: var(--font-heading), serif;
   color: var(--color-navy);
 }
+.nav-brand {
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-brand:hover {
+  color: var(--color-gold);
+}
+
+.nav-link {
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-white);
+  text-decoration: underline;
+}
 
