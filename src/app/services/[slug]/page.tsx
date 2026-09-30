@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import QuoteRequestForm from './QuoteRequestForm'
 
 export default async function ServiceDetailPage({
   params,
@@ -19,6 +20,12 @@ export default async function ServiceDetailPage({
   if (error || !service) {
     notFound()
   }
+
+  const { data: questions } = await supabase
+    .from('service_questions')
+    .select('id, question_label, field_type, is_required')
+    .eq('service_id', service.id)
+    .order('display_order', { ascending: true })
 
   return (
     <main style={{ maxWidth: '700px', margin: '0 auto', padding: '3rem 2rem' }}>
@@ -46,22 +53,25 @@ export default async function ServiceDetailPage({
         </p>
       </div>
 
-      <button
-        style={{
-          backgroundColor: 'var(--color-navy)',
-          color: 'var(--color-white)',
-          border: 'none',
-          padding: '0.875rem 2rem',
-          borderRadius: '4px',
-          fontWeight: 600,
-          fontSize: '1rem',
-          cursor: 'pointer',
-        }}
-        disabled
-      >
-        {service.booking_type === 'quote_request' ? 'Request a Quote' : 'Book Now'}
-        {' '}(coming soon)
-      </button>
+      {service.booking_type === 'quote_request' ? (
+        <QuoteRequestForm serviceId={service.id} questions={questions ?? []} />
+      ) : (
+        <button
+          style={{
+            backgroundColor: 'var(--color-navy)',
+            color: 'var(--color-white)',
+            border: 'none',
+            padding: '0.875rem 2rem',
+            borderRadius: '4px',
+            fontWeight: 600,
+            fontSize: '1rem',
+            cursor: 'pointer',
+          }}
+          disabled
+        >
+          Book Now (coming soon)
+        </button>
+      )}
     </main>
   )
 }
