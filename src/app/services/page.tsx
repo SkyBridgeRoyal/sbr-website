@@ -1,4 +1,4 @@
-
+import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 
 export default async function ServicesPage() {
@@ -30,9 +30,11 @@ export default async function ServicesPage() {
               backgroundColor: 'var(--color-white)',
             }}
           >
-            <h2 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>
-              {service.name}
-            </h2>
+<Link href={`/services/${service.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+  <h2 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>
+    {service.name}
+  </h2>
+</Link>
             <p style={{ marginBottom: '0.5rem' }}>{service.short_benefit}</p>
             <p style={{ color: 'var(--color-gold)', fontWeight: 600 }}>
               {service.price_note}

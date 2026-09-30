@@ -61,9 +61,9 @@ export default async function Home() {
             >
               <h3 style={{ fontSize: '1.15rem', marginBottom: '0.5rem' }}>{service.name}</h3>
               <p style={{ marginBottom: '0.5rem' }}>{service.short_benefit}</p>
-              <Link href="/services" style={{ color: 'var(--color-gold)', fontWeight: 600 }}>
-                Learn more →
-              </Link>
+<Link href={`/services/${service.slug}`} style={{ color: 'var(--color-gold)', fontWeight: 600 }}>
+  Learn more →
+</Link>
             </div>
           ))}
         </div>
